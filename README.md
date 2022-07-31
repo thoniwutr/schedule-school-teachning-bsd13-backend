@@ -1,6 +1,6 @@
-# merchant-config-svc
+# schedule school teaching services
 
-Merchant Config Service
+Schedule School Teaching Services
 
 ## Usage
 
@@ -17,11 +17,7 @@ SERVER_TIMEOUT_WRITE=15s
 SERVER_TIMEOUT_IDLE=30s
 
 # Generate below by running $(gcloud beta emulators datastore env-init)
-DATASTORE_DATASET=beam-payment-development
-DATASTORE_EMULATOR_HOST=localhost:8081
-DATASTORE_EMULATOR_HOST_PATH=localhost:8081/datastore
-DATASTORE_HOST=http://localhost:8081
-DATASTORE_PROJECT_ID=beam-payment-development
+PROJECT_ID=bsd-schedule-teaching;DEBUG=true;PORT=7001;SERVER_TIMEOUT_READ=600s;SERVER_TIMEOUT_WRITE=600s;SERVER_TIMEOUT_IDLE=30s;PUBLISHER_TOPIC_ID=merchant-create;GOOGLE_APPLICATION_CREDENTIALS=D:\bsd13\schedule-school-teaching-bsd13-backend\bsd-schedule-teaching-c983423ae892.json;KYM_BUCKET_NAME=beam-development-315606_kym_documents;RECIPIENT_SERVICE_URL=httpp;ORGANISATION_SERVICE_URL=test
 ```
 
 Start up the emulator like so in one terminal:
