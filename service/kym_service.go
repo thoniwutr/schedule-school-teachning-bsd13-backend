@@ -5,11 +5,11 @@ import (
 	"errors"
 	"fmt"
 
-	c "github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/constant"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/db"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/dto"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/thirdparty"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/util"
+	c "github.com/thoniwutr/schedule-school-teachning-bsd13-backend/constant"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/db"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/dto"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/thirdparty"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/util"
 )
 
 type KymService struct {

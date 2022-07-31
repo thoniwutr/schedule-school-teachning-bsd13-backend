@@ -5,7 +5,7 @@ import (
 	"runtime/debug"
 	"time"
 
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/util"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/util"
 )
 
 // RequestLogger is essentially a wrapper so that it can be used as middleware

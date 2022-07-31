@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	c "github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/constant"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/messaging"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/security"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/service"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/util"
+	c "github.com/thoniwutr/schedule-school-teachning-bsd13-backend/constant"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/messaging"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/security"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/service"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/util"
 	"github.com/gorilla/mux"
 	"net/http"
 	"net/http/httptest"
@@ -16,8 +16,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/model"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/dto"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/model"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/dto"
 )
 
 func TestMerchantsHandler_GetMerchant(t *testing.T) {

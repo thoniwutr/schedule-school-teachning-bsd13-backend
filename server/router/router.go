@@ -6,9 +6,9 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/swaggo/http-swagger"
 
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/handlers"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/middleware"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/util"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/handlers"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/middleware"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/util"
 )
 
 // NewRouter returns a http.Handler which handles different routes for the server

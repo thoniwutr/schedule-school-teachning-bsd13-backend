@@ -1,4 +1,4 @@
-module github.com/thoniwutr/-schedule-school-teachning-bsd13-backend
+module github.com/thoniwutr/schedule-school-teachning-bsd13-backend
 
 go 1.16
 

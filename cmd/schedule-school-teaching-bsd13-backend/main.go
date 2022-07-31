@@ -9,16 +9,16 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/api"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/config"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/db"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/messaging"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/handlers"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/router"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/security"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/service"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/thirdparty"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/util"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/api"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/config"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/db"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/messaging"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/handlers"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/router"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/security"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/service"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/thirdparty"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/util"
 )
 
 // @title Merchant Config Service API

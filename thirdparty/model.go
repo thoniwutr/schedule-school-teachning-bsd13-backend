@@ -3,7 +3,7 @@ package thirdparty
 import (
 	"github.com/go-playground/validator/v10"
 
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/model"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/model"
 )
 
 // OrganisationRequest struct used for creating new organisation

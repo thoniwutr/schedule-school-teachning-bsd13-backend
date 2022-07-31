@@ -3,7 +3,7 @@ package model_test
 import (
 	"testing"
 
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/model"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/model"
 )
 
 func TestCreateMerchant(t *testing.T) {

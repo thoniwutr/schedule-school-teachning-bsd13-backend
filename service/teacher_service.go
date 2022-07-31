@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/db"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/dto"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/db"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/dto"
 	"github.com/google/uuid"
 )
 

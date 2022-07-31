@@ -3,10 +3,10 @@ package service
 import (
 	"fmt"
 
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/db"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/messaging"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/model"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/dto"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/db"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/messaging"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/model"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/dto"
 )
 
 type MerchantService struct {

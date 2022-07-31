@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	c "github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/constant"
+	c "github.com/thoniwutr/schedule-school-teachning-bsd13-backend/constant"
 )
 
 // Kym defines model for Kym.

@@ -1,7 +1,7 @@
 package messaging
 
 import (
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/dto"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/dto"
 )
 
 // Publisher defines an interface for message publisher

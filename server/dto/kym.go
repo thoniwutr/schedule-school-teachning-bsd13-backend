@@ -7,8 +7,8 @@ import (
 
 	"github.com/go-playground/validator/v10"
 
-	c "github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/constant"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/model"
+	c "github.com/thoniwutr/schedule-school-teachning-bsd13-backend/constant"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/model"
 )
 
 // NewKym struct used for creating new KYM requests

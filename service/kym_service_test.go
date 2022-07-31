@@ -7,12 +7,12 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	c "github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/constant"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/db"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/model"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/dto"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/thirdparty"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/util"
+	c "github.com/thoniwutr/schedule-school-teachning-bsd13-backend/constant"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/db"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/model"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/dto"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/thirdparty"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/util"
 )
 
 func TestKymService_AddKym(t *testing.T) {

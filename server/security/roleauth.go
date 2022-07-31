@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"net/http"
 
-	c "github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/constant"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/db"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/model"
+	c "github.com/thoniwutr/schedule-school-teachning-bsd13-backend/constant"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/db"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/model"
 )
 
 type RoleAuthenticator interface {

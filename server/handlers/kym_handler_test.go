@@ -12,11 +12,11 @@ import (
 
 	"github.com/gorilla/mux"
 
-	c "github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/constant"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/dto"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/security"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/service"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/util"
+	c "github.com/thoniwutr/schedule-school-teachning-bsd13-backend/constant"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/dto"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/security"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/service"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/util"
 )
 
 func TestKymHandler_AddKym(t *testing.T) {

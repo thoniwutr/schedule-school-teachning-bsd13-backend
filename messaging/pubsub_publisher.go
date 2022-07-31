@@ -6,8 +6,8 @@ import (
 	"fmt"
 
 	"cloud.google.com/go/pubsub"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/dto"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/util"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/dto"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/util"
 )
 
 type PubsubClient struct {

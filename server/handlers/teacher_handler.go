@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"net/http"
 
-	c "github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/constant"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/dto"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/service"
-	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/util"
+	c "github.com/thoniwutr/schedule-school-teachning-bsd13-backend/constant"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/dto"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/service"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/util"
 )
 
 // TeacherHandler is a handler for /teacher path
