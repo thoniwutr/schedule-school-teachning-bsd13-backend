@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: merchant-config-svc
+spec:
+  selector:
+    matchLabels:
+      app: merchant-config-svc
+  template:
+    metadata:
+      labels:
+        app: merchant-config-svc
+    spec:
+      containers:
+      - name: merchant-config-svc
+        image: gcr.io/${PROJECT_ID}/merchant-config-svc
+        command: ["./merchant-config-svc"]
+        ports:
+        - containerPort: 80
+        env:
+        - name: PROJECT_ID
+          value: ${PROJECT_ID}
+        - name: PORT
+          value: "80"
+        - name: DEBUG
+          value: "${DEBUG}"
+        - name: PUBLISHER_TOPIC_ID
+          value: ${PUBLISHER_TOPIC_ID}
+        - name: KYM_BUCKET_NAME
+          value: ${KYM_BUCKET_NAME}
+        - name: ORGANISATION_SERVICE_URL
+          value: "http://account.default.svc.cluster.local/organisation"
+        - name: RECIPIENT_SERVICE_URL
+          value: "http://notifications-service.default.svc.cluster.local/recipients"
+        - name: SERVER_TIMEOUT_READ
+          value: "15s"
+        - name: SERVER_TIMEOUT_WRITE
+          value: "15s"
+        - name: SERVER_TIMEOUT_IDLE
+          value: "30s"
+
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: merchant-config-svc
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: merchant-config-svc
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50

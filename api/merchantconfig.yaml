@@ -1,0 +1,440 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: BEAM Merchant Config Service
+  description: Merchant Config Svc (abbreviated as MCS) manages the merchants' 
+    payments configuration. Merchants on our platform would be able to 
+    manage configuration for their payments such as channels and payment types 
+    they allow, how they would like to receive payouts through our Lighthouse UI. 
+    During customer purchases, we’d fetch this configuration to determine exactly 
+    how that user is able to pay. 
+servers:
+  - url: http://localhost
+    description: localhost
+  - url: https://beam-payment-development.df.r.appspot.com/
+    description: "uses development server"
+tags:
+  - name: merchants
+    description: Operations on the Merchant entity
+  - name: merchants-config
+    description: Operations on the merchant's payment configurations
+paths:
+  /merchants:
+    post:
+      summary: New Merchant
+      operationId: AddMerchant
+      description: Creates a new Merchant entity
+      tags:
+        - merchants
+      requestBody:
+        description: New Merchant Request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMerchant'
+      responses:
+        "201":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+        "500":
+          description: Unexpected Error occurred
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+
+  /merchants/{merchantId}:
+    get:
+      summary: Get Merchant
+      tags:
+        - merchants
+      description: Returns a Merchant entity given an ID
+      operationId: Find Merchant by ID
+      parameters:
+        - name: merchantId
+          in: path
+          description: ID of Merchant to fetch
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantPayConfigs'
+        "404":
+          description: Invalid purchaseId
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+        "500":
+          description: Unexpected Error occurred
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+
+    put:
+      summary: Update Merchant
+      operationId: Update Merchant
+      description: Update Merchant given an existing merchant ID
+      parameters:
+        - name: merchantId
+          in: path
+          description: ID of Merchant to fetch
+          required: true
+          schema:
+            type: string
+      tags:
+        - merchants
+      requestBody:
+        description: Request Body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Merchant'
+      responses:
+        "202":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+        "500":
+          description: Unexpected Error occurred
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+
+  /merchants/{merchantId}/pay-in-config:
+    get:
+      summary: Get PayInConfigs
+      description: Returns the pay in configurations for the given merchant ID
+      tags:
+        - merchants-config
+      operationId: GetPayInConfigs
+      parameters:
+        - name: merchantId
+          in: path
+          description: ID of Merchant to fetch
+          required: true
+          schema:
+            type: string
+        - name: channel
+          in: query
+          description: provide the channel of the pay in config to fetch a specific one. If nothing is
+            provided, all pay in configs for the merchant are returned by default
+          required: false
+          explode: false
+          example: line
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of PayInConfigs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PayInConfig'
+        "404":
+          description: Invalid merchantId
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+        "500":
+          description: Unexpected Error occurred
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+        
+    post:
+      summary: Upsert PayInConfig
+      description: Creates a new pay in config or replaces an existing one from the 
+        channel of the payment. 
+      operationId: Upsert PayIn Config
+      tags:
+        - merchants-config
+      parameters:
+        - name: merchantId
+          in: path
+          description: ID of Merchant to fetch
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Request Body of Checkout
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayInConfig'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+        "400":
+          description: invalid requestBody
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+        "500":
+          description: Unexpected Error occurred
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+
+  /merchants/{merchantId}/pay-out-config:
+    get:
+      summary: Get PayOutConfig
+      operationId: Get PayOutConfig
+      description: Returns the pay out config for the given merchant ID
+      tags:
+        - merchants-config
+      parameters:
+        - name: merchantId
+          in: path
+          description: ID of Merchant to fetch
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Get Merchant Pay Out Config successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayOutConfig'
+        "404":
+          description: Invalid merchantId
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+        "500":
+          description: Unexpected Error occurred
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+    post:
+      summary: Upsert PayOutConfig
+      operationId: Upsert PayOutConfig
+      description: Creates a new PayOutConfig fromt the request or replaces an existing one
+      tags:
+        - merchants-config
+      parameters:
+        - name: merchantId
+          in: path
+          description: ID of Merchant to fetch
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Request Body of Checkout
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayOutConfig'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+        "400":
+          description: invalid requestBody
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+        "500":
+          description: Unexpected Error occurred
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+  
+components:
+  schemas:
+    NewMerchant:
+      type: object
+      required:
+        - organisationId
+        - shortName
+        - fullName
+        - email
+        - contactNumber
+        - address
+      properties:
+        organisationId:
+          type: string
+          description: the original organisation Id
+        shortName:
+          type: string
+          description: the short name to be used for the given merchant (this will be used for the merchant payment alias)
+          minLength: 3
+          maxLength: 10
+          example: afteryou
+        fullName:
+          type: string
+          description: full name for the organisation/merchant
+        email:
+          type: string
+          format: email
+          description: main contact email for the merchant
+        contactNumber:
+          type: string
+          description: main contact number for the merchant
+        address:
+          $ref: "#/components/schemas/Address"
+
+    Merchant:
+      allOf:
+        - $ref: '#/components/schemas/NewMerchant'
+        - type: object
+          required:
+            - merchantId
+            - created
+          properties:
+            merchantId:
+              type: string
+              description: the generated ID for the merchant
+              example: m_001
+            created:
+              type: string
+              format: date-time
+              description: timestamp the merchant entity was created (system generated)
+
+    MerchantPayConfigs:
+      allOf:
+        - $ref: '#/components/schemas/Merchant'
+        - type: object
+          properties:
+            payInConfigs:
+              type: array
+              items:
+                $ref: '#/components/schemas/PayInConfig'
+            payOutConfig:
+              $ref: '#/components/schemas/BankAccount'
+
+    PayInConfig:
+      type: object
+      required: 
+        - channel
+        - paymentMethods
+      properties:
+        channel:
+          type: string
+          description: the channel through which the purchase is being made
+          example: line
+        paymentMethods:
+          type: array
+          description: the payment methods that the merchant is willing to accept through this channel
+          items:
+            type: string
+
+    PayOutConfig:
+      type: object
+      required: 
+        - schedule
+        - currencyCode
+        - bankAccount
+      properties:
+        schedule:
+          type: string
+          description: how often the payout should occur
+          enum:
+            - weekly
+            - monthly
+        currencyCode:
+          type: string
+          description: Three-letter ISO currency code in caps
+          example: THB
+        bankAccount:
+          $ref: '#/components/schemas/BankAccount'
+
+    Address:
+      type: object
+      required:
+        - city
+        - country
+        - zipcode
+      properties:
+        houseNumber:
+          type: string
+        street:
+          type: string
+        district:
+          type: string
+        subdistrict:
+          type: string
+        city:
+          type: string
+        province:
+          type: string
+        country:
+          type: string
+        zipcode:
+          type: string
+
+    BankAccount:
+      type: object
+      required:
+        - bankName
+        - accountName
+        - accountNumber
+      properties:
+        bankName:
+          type: string
+          description: Name of the bank
+          example: SCB
+        accountName:
+          type: string
+          description: Name of the account
+        accountNumber:
+          type: string
+          description: Account number
+
+    ApiResponse:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

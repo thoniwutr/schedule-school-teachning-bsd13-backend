@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "bsd-schedule-teaching",
+  "private_key_id": "c983423ae8920c4432ed79146419204649c2984e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCZAbCVkcSRGKj5\njfo1rA6Q6xytUevZ+fhlZWd9QMtMCr4aiPeiKb9cBdNJASQ2MPZeRwkiBe2y3VTl\nZl9tzxy89KI9jIqA+OpdYxREdwPnRiMF9NIgf/YhwVzqgLLdXp/NhWg+JdtFkBy3\nSuyYMEqcPC3txISSGuMQKZ/1R7rzaCd/XZSoB1hug8wx5nFThyccKzwjRG2wV5ot\nsJuAVGR+58wqwzk1nMF6mty5dnEqK2zoRRyRBPkzI1fAuGb5pQJsoEmRXInQXEb3\npE6fATYv5K4dVpjJmjsmABhgYA3FnKqp9ZrIiuWb4G7NZWivcTaAOREXXx8tAvQT\ngh4jMfbpAgMBAAECggEACE8eLtEuso57RqoeJ2IDnH0YHpVvUHQRuDfsidHF+Igw\n0LIVeJn5yV6LndBRDhxUlMQYy980jF0WqiqIDieMMPq8AMmsD9r0p0OlKx6neJzH\ndCBadOdeD3E3wYhhrkHgPcH76jwWD04HMTEBbjZZJujhuaLNbD3HjO4lwKU3ktZE\noXYSUBqyq8fBvQGXKKs306Y2Aak+FMWZKouJTVJTmdwUcNoLNMNvEvJ9ILnM9r2n\ne5U/7OoEVVJ+FXtrMSvMZrm9fKw4bA6ASM9b4SJi35Rnm1aUAXUZDGr/8cBp57dK\n8bz9GE2opGuPpwz97U+r0VqbeUXtT8bORV42vulT8QKBgQDPvQ622OK1jS2u2tw/\nKxa6cOkM97gqLZ29Djqg7DR26q22dtzmMOv2cZFpaW9em2cYU1x6qd9xuq4aWMn8\njTD+JCfu6F683cWsP0SvBvYcwP0dEhufpJgvAQqRXwvm3uLq53Tb3sZuMfQsoODb\nXc5NxN4Rq/XKXZ+TD/r9u6PRfQKBgQC8jYha4iHGc4o6Dqd+45MhlVErp5wbX1v/\nyHJSRZqAvCvSKkMcOKZyY8XCNGlaBHjubG5i4VMLFCCxSZzMWa4YYslVF39XGxcw\n9dPimPWXdSR6Z4DvyoMgP20Mq2sM7NNPCvEKfayEf9jVAve2zQaYYkZwJJpq6f51\nEeEIAtj23QKBgDU/0ei+uYYuFRqwESrEAcRystpXGUb+gGN4pUCgq2YcC8EswLzk\np2d5fvuVQi3vCcMrgxYSOyts3bn1LnllO7y5Sd8sgzRIaKYZZaKz1xxRv8/W12vZ\nhgTucGYJBgT89w+dms/NT/HpLhzOdDTm274Fi6LeAFgKHaBVxVGK6pgFAoGAZ9sF\nWhnoRKjrYCMmOwwaxIq8VPFTWPhjcjX0UkCoY3RCJtbEdEz30VYHXXsE9GI2Qg1T\nl/9IgHersjs7tItJC4GOJ+Jzb4UqdvtQpCVgUPZjC1DrgijnpOGKrUnWAx6HHaiH\nMCIc3jaVNm8WBohTs6ed6LMgovcUA2O/sWvwGbkCgYAFYghRZKHX4XIIFABlU5Jd\nS4gxqOKeu4hapZDuKwgOuG5BJwdzr4VHDCG+4gS/qOR6jsp4BsKmbjZWGda/k9BN\nA1bheVrW/DaoFPC1PYWUh0tALD4ApJS1BBt4iv+sZWfGgF6VXKhWD+yZb3oI75+c\n5sIGZtAJ34FfGu6/vTGMGQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "development-schedule-teaching@bsd-schedule-teaching.iam.gserviceaccount.com",
+  "client_id": "102503222014998786304",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/development-schedule-teaching%40bsd-schedule-teaching.iam.gserviceaccount.com"
+}

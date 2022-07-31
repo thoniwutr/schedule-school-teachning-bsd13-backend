@@ -1,0 +1,6 @@
+indexes:
+  - kind: "Kym"
+    properties:
+      - name: "Status"
+      - name: "DatetimeCreated"
+        direction: desc

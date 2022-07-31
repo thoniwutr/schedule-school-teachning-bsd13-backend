@@ -1,0 +1,653 @@
+definitions:
+  dto.ApiKey:
+    properties:
+      required:
+        type: boolean
+      scope:
+        items:
+          type: string
+        type: array
+    type: object
+  dto.BankAccount:
+    properties:
+      accountName:
+        type: string
+      accountNumber:
+        type: string
+      bankName:
+        type: string
+    required:
+    - accountName
+    - accountNumber
+    - bankName
+    type: object
+  dto.BankTransferDetail:
+    properties:
+      accountName:
+        type: string
+      accountNumber:
+        type: string
+      accountType:
+        type: string
+      bankName:
+        type: string
+      branch:
+        type: string
+    required:
+    - accountName
+    - accountNumber
+    - bankName
+    type: object
+  dto.BusinessDetail:
+    properties:
+      address:
+        $ref: '#/definitions/dto.MerchantAddress'
+      businessIndustry:
+        type: string
+      businessName:
+        type: string
+      domainName:
+        type: string
+      idNumber:
+        type: string
+      phoneNumber:
+        type: string
+      registeredEntityName:
+        type: string
+    required:
+    - address
+    - businessName
+    - idNumber
+    - phoneNumber
+    - registeredEntityName
+    type: object
+  dto.KymFullDetailResponse:
+    properties:
+      accountingContact:
+        $ref: '#/definitions/dto.PointOfContact'
+      apiKey:
+        $ref: '#/definitions/dto.ApiKey'
+      bankTransferDetail:
+        $ref: '#/definitions/dto.BankTransferDetail'
+      businessContact:
+        $ref: '#/definitions/dto.PointOfContact'
+      businessDetail:
+        $ref: '#/definitions/dto.BusinessDetail'
+      datetimeCreated:
+        type: string
+      documentDownloadUrl:
+        type: string
+      id:
+        type: string
+      imageUrl:
+        type: string
+      notes:
+        type: string
+      organisationId:
+        type: string
+      partnerRefId:
+        type: string
+      source:
+        type: string
+      status:
+        type: string
+      technicalContact:
+        $ref: '#/definitions/dto.PointOfContact'
+    required:
+    - id
+    - organisationId
+    - partnerRefId
+    type: object
+  dto.KymResponse:
+    properties:
+      businessName:
+        type: string
+      contactPerson:
+        type: string
+      datetimeCreated:
+        type: string
+      documentDownloadUrl:
+        type: string
+      id:
+        type: string
+      phoneNumber:
+        type: string
+      status:
+        type: string
+    required:
+    - businessName
+    - contactPerson
+    - id
+    - phoneNumber
+    type: object
+  dto.Merchant:
+    properties:
+      address:
+        $ref: '#/definitions/dto.MerchantAddress'
+      availablePaymentMethods:
+        description: acceptable payment methods
+        example:
+        - creditCard
+        - internetBanking
+        items:
+          type: string
+        type: array
+      contactNumber:
+        description: The merchant's main contact number
+        example: "012345678"
+        type: string
+      currencyCode:
+        description: Only THB is supported currently
+        type: string
+      email:
+        description: The merchant's email address
+        example: email@merchant.com
+        type: string
+      fullName:
+        description: The merchant's company name in full
+        example: merchant company
+        type: string
+      logoUrl:
+        description: Full URL to the merchant's logo to display
+        example: https://url.to.logo/image.png
+        type: string
+      merchantId:
+        type: string
+      organisationId:
+        description: Beam's organisation ID of the merchant
+        example: merchant123
+        type: string
+    required:
+    - availablePaymentMethods
+    - contactNumber
+    - currencyCode
+    - email
+    - fullName
+    - merchantId
+    - organisationId
+    type: object
+  dto.MerchantAddress:
+    properties:
+      city:
+        type: string
+      country:
+        type: string
+      district:
+        type: string
+      houseNumber:
+        type: string
+      province:
+        type: string
+      street:
+        type: string
+      subdistrict:
+        type: string
+      zipcode:
+        type: string
+    required:
+    - city
+    - country
+    - zipcode
+    type: object
+  dto.MerchantGetResponse:
+    properties:
+      address:
+        $ref: '#/definitions/dto.MerchantAddress'
+      availablePaymentMethods:
+        description: acceptable payment methods
+        example:
+        - creditCard
+        - internetBanking
+        items:
+          type: string
+        type: array
+      contactNumber:
+        description: The merchant's main contact number
+        example: "012345678"
+        type: string
+      created:
+        description: timestamp the merchant entity was created
+        type: string
+      currencyCode:
+        description: Only THB is supported currently
+        type: string
+      email:
+        description: The merchant's email address
+        example: email@merchant.com
+        type: string
+      fullName:
+        description: The merchant's company name in full
+        example: merchant company
+        type: string
+      logoUrl:
+        description: Full URL to the merchant's logo to display
+        example: https://url.to.logo/image.png
+        type: string
+      merchantId:
+        type: string
+      organisationId:
+        description: Beam's organisation ID of the merchant
+        example: merchant123
+        type: string
+      payOutConfig:
+        $ref: '#/definitions/dto.PayOutConfig'
+      updated:
+        description: timestamp the merchant entity was last updated
+        type: string
+    required:
+    - availablePaymentMethods
+    - contactNumber
+    - currencyCode
+    - email
+    - fullName
+    - merchantId
+    - organisationId
+    type: object
+  dto.NewKym:
+    properties:
+      accountingContact:
+        $ref: '#/definitions/dto.PointOfContact'
+        description: AccountingContact represent accounting of contact
+      apiKey:
+        $ref: '#/definitions/dto.ApiKey'
+        description: ApiKey defines model for api key.
+      bankTransferDetail:
+        $ref: '#/definitions/dto.BankTransferDetail'
+        description: BankTransferDetail represent detail of bank detail
+      businessContact:
+        $ref: '#/definitions/dto.PointOfContact'
+        description: BusinessContact represent business of contact
+      businessDetail:
+        $ref: '#/definitions/dto.BusinessDetail'
+        description: BusinessDetail represent primary information of company
+      documentContent:
+        description: DocumentContent represent documentation uploaded convert to base64
+        type: string
+      imageUrl:
+        description: ImageURL represent company logo
+        type: string
+      organisationId:
+        description: OrganisationID represent id of organisation
+        type: string
+      partnerRefId:
+        description: PartnerRefID defines partner reference id
+        type: string
+      source:
+        description: Source indicate where kym is submitted from
+        example: '@lighthouse'
+        type: string
+      technicalContact:
+        $ref: '#/definitions/dto.PointOfContact'
+        description: TechnicalContact represent technical of contact
+    required:
+    - bankTransferDetail
+    - businessDetail
+    - documentContent
+    - source
+    type: object
+  dto.NewMerchant:
+    properties:
+      address:
+        $ref: '#/definitions/dto.MerchantAddress'
+      availablePaymentMethods:
+        description: acceptable payment methods
+        example:
+        - creditCard
+        - internetBanking
+        items:
+          type: string
+        type: array
+      contactNumber:
+        description: The merchant's main contact number
+        example: "012345678"
+        type: string
+      currencyCode:
+        description: Only THB is supported currently
+        type: string
+      email:
+        description: The merchant's email address
+        example: email@merchant.com
+        type: string
+      fullName:
+        description: The merchant's company name in full
+        example: merchant company
+        type: string
+      logoUrl:
+        description: Full URL to the merchant's logo to display
+        example: https://url.to.logo/image.png
+        type: string
+      organisationId:
+        description: Beam's organisation ID of the merchant
+        example: merchant123
+        type: string
+    required:
+    - availablePaymentMethods
+    - contactNumber
+    - currencyCode
+    - email
+    - fullName
+    - organisationId
+    type: object
+  dto.PayOutConfig:
+    properties:
+      bankAccount:
+        $ref: '#/definitions/dto.BankAccount'
+      currencyCode:
+        example: THB
+        type: string
+      schedule:
+        description: how often the payout should occur
+        example: weekly,monthly
+        type: string
+    required:
+    - bankAccount
+    - currencyCode
+    - schedule
+    type: object
+  dto.PointOfContact:
+    properties:
+      email:
+        type: string
+      fullName:
+        type: string
+      phoneNumber:
+        type: string
+      role:
+        type: string
+    required:
+    - fullName
+    - phoneNumber
+    type: object
+  dto.UpdateKymStatusRequest:
+    properties:
+      notes:
+        type: string
+      organisationId:
+        type: string
+      status:
+        type: string
+    required:
+    - status
+    type: object
+  util.APIResponse:
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+    type: object
+info:
+  contact:
+    email: developers@beamcheckout.com
+    name: Beam Developers
+    url: http://www.beamcheckout.com
+  description: |-
+    Merchant Config Service manages the Merchant entities.
+    Merchants on our platform would be able to manage configuration for their payments such as
+    payment methods they allow, and how they would like to receive their payouts.
+    During customer purchases, this configuration is used to determine how users are able to pay.
+  title: Merchant Config Service API
+  version: "0.1"
+paths:
+  /kym:
+    get:
+      consumes:
+      - application/json
+      description: Returns all Kym detail only necessary field
+      operationId: GetAllKym
+      parameters:
+      - description: string enums
+        enum:
+        - '"approved"'
+        - '"rejected"'
+        - '"pending"'
+        in: query
+        name: status
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            items:
+              $ref: '#/definitions/dto.KymResponse'
+            type: array
+        default:
+          description: fail
+          schema:
+            $ref: '#/definitions/util.APIResponse'
+      summary: Get All Kym
+      tags:
+      - kym
+    post:
+      consumes:
+      - application/json
+      description: Submitted Kym detail and documents to register with Beam
+      operationId: AddKym
+      parameters:
+      - description: NewKym entity
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/dto.NewKym'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: success
+          schema:
+            $ref: '#/definitions/util.APIResponse'
+        default:
+          description: fail
+          schema:
+            $ref: '#/definitions/util.APIResponse'
+      summary: Kym Registration
+      tags:
+      - kym
+  /kym/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Returns all Kym full detail including document uploaded via downloadURL
+      operationId: GetKym
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/dto.KymFullDetailResponse'
+        default:
+          description: fail
+          schema:
+            $ref: '#/definitions/util.APIResponse'
+      summary: Get Kym Full Detail
+      tags:
+      - kym
+  /kym/{id}/status:
+    put:
+      consumes:
+      - application/json
+      description: Admin change status of KYM registration to "approved" or "rejected"
+        and make additional notes
+      operationId: UpdateKymStatus
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: UpdateKymStatusRequest entity
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UpdateKymStatusRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/util.APIResponse'
+        default:
+          description: fail
+          schema:
+            $ref: '#/definitions/util.APIResponse'
+      summary: Update Kym status and take note if the documents are not completed.
+      tags:
+      - kym
+  /merchants:
+    post:
+      consumes:
+      - application/json
+      description: Creates a new Merchant entity to be able to accept payments through
+        Beam
+      operationId: AddMerchant
+      parameters:
+      - description: NewMerchant entity
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/dto.NewMerchant'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: success
+          schema:
+            $ref: '#/definitions/util.APIResponse'
+        default:
+          description: fail
+          schema:
+            $ref: '#/definitions/util.APIResponse'
+      summary: Register Merchant
+      tags:
+      - merchants
+  /merchants/{merchantId}:
+    get:
+      consumes:
+      - application/json
+      description: Returns a Merchant entity given the merchantId
+      operationId: GetMerchant
+      parameters:
+      - description: merchantId
+        in: path
+        name: merchantId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/dto.MerchantGetResponse'
+        default:
+          description: fail
+          schema:
+            $ref: '#/definitions/util.APIResponse'
+      summary: retrieves the Merchant from the merchantId specified in the path
+      tags:
+      - merchants
+    put:
+      consumes:
+      - application/json
+      description: Updates the Merchant given an existing merchant ID. Note that some
+        fields are not allowed to be updatable.
+      operationId: UpdateMerchant
+      parameters:
+      - description: merchantId
+        in: path
+        name: merchantId
+        required: true
+        type: string
+      - description: Merchant entity
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/dto.Merchant'
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: success
+          schema:
+            $ref: '#/definitions/util.APIResponse'
+        default:
+          description: fail
+          schema:
+            $ref: '#/definitions/util.APIResponse'
+      summary: Update Merchant
+      tags:
+      - merchants
+  /merchants/{merchantId}/pay-out-config:
+    get:
+      consumes:
+      - application/json
+      description: Returns a Merchant entity retrieves the Merchant's PayOutConfig
+      operationId: GetPayOutConfig
+      parameters:
+      - description: merchantId
+        in: path
+        name: merchantId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            items:
+              $ref: '#/definitions/dto.PayOutConfig'
+            type: array
+        default:
+          description: fail
+          schema:
+            $ref: '#/definitions/util.APIResponse'
+      summary: retrieve PayOutConfig
+      tags:
+      - merchants
+    post:
+      consumes:
+      - application/json
+      description: Update Merchant PayOutConfig
+      operationId: UpsertPayOutConfig
+      parameters:
+      - description: merchantId
+        in: path
+        name: merchantId
+        required: true
+        type: string
+      - description: PayInConfig entity
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/dto.PayOutConfig'
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: success
+          schema:
+            $ref: '#/definitions/util.APIResponse'
+        default:
+          description: fail
+          schema:
+            $ref: '#/definitions/util.APIResponse'
+      summary: allows updating or inserting PayOutConfig
+      tags:
+      - merchants
+swagger: "2.0"

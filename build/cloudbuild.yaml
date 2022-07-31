@@ -1,0 +1,32 @@
+steps:
+- name: "gcr.io/cloud-builders/docker"
+  args: ["build", "-t", "gcr.io/${PROJECT_ID}/merchant-config-svc:${SHORT_SHA}", "."]
+
+- name: "gcr.io/cloud-builders/docker"
+  args: ["push", "gcr.io/${PROJECT_ID}/merchant-config-svc:${SHORT_SHA}"]
+
+- name: gcr.io/${PROJECT_ID}/envsubst
+  env:
+    - "PROJECT_ID=${PROJECT_ID}"
+    - "DEBUG=${_DEBUG}"
+    - "PUBLISHER_TOPIC_ID=${_PUBLISHER_TOPIC_ID}"
+    - "KYM_BUCKET_NAME=${_KYM_BUCKET_NAME}"
+    - "ORGANISATION_SERVICE_URL=${_ORGANISATION_SERVICE_URL}"
+    - "RECIPIENT_SERVICE_URL=${_RECIPIENT_SERVICE_URL}"
+  args: ["deployment/*_deployment.yaml"]
+
+- name: "gcr.io/cloud-builders/kubectl"
+  args: ["apply", '-f', "deployment/service.yaml"]
+  env:
+    - "CLOUDSDK_COMPUTE_ZONE=${_COMPUTE_ZONE}"
+    - "CLOUDSDK_COMPUTE_REGION=${_COMPUTE_REGION}"
+    - "CLOUDSDK_CONTAINER_CLUSTER=${_CLUSTER_NAME}"
+
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=deployment/server_deployment.yaml
+  - --image=gcr.io/${PROJECT_ID}/merchant-config-svc:${SHORT_SHA}
+  - --location=${_COMPUTE_LOCATION}
+  - --cluster=${_CLUSTER_NAME}
+  - --output=./output/merchant-config-svc

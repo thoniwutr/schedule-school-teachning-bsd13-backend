@@ -1,0 +1,929 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Merchant Config Service manages the Merchant entities.\nMerchants on our platform would be able to manage configuration for their payments such as\npayment methods they allow, and how they would like to receive their payouts.\nDuring customer purchases, this configuration is used to determine how users are able to pay.",
+        "title": "Merchant Config Service API",
+        "contact": {
+            "name": "Beam Developers",
+            "url": "http://www.beamcheckout.com",
+            "email": "developers@beamcheckout.com"
+        },
+        "version": "0.1"
+    },
+    "paths": {
+        "/kym": {
+            "get": {
+                "description": "Returns all Kym detail only necessary field",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "kym"
+                ],
+                "summary": "Get All Kym",
+                "operationId": "GetAllKym",
+                "parameters": [
+                    {
+                        "enum": [
+                            "\"approved\"",
+                            "\"rejected\"",
+                            "\"pending\""
+                        ],
+                        "type": "string",
+                        "description": "string enums",
+                        "name": "status",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/dto.KymResponse"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "fail",
+                        "schema": {
+                            "$ref": "#/definitions/util.APIResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Submitted Kym detail and documents to register with Beam",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "kym"
+                ],
+                "summary": "Kym Registration",
+                "operationId": "AddKym",
+                "parameters": [
+                    {
+                        "description": "NewKym entity",
+                        "name": "requestBody",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.NewKym"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/util.APIResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "fail",
+                        "schema": {
+                            "$ref": "#/definitions/util.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/kym/{id}": {
+            "get": {
+                "description": "Returns all Kym full detail including document uploaded via downloadURL",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "kym"
+                ],
+                "summary": "Get Kym Full Detail",
+                "operationId": "GetKym",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/dto.KymFullDetailResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "fail",
+                        "schema": {
+                            "$ref": "#/definitions/util.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/kym/{id}/status": {
+            "put": {
+                "description": "Admin change status of KYM registration to \"approved\" or \"rejected\" and make additional notes",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "kym"
+                ],
+                "summary": "Update Kym status and take note if the documents are not completed.",
+                "operationId": "UpdateKymStatus",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "UpdateKymStatusRequest entity",
+                        "name": "requestBody",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.UpdateKymStatusRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/util.APIResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "fail",
+                        "schema": {
+                            "$ref": "#/definitions/util.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/merchants": {
+            "post": {
+                "description": "Creates a new Merchant entity to be able to accept payments through Beam",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "Register Merchant",
+                "operationId": "AddMerchant",
+                "parameters": [
+                    {
+                        "description": "NewMerchant entity",
+                        "name": "requestBody",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.NewMerchant"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/util.APIResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "fail",
+                        "schema": {
+                            "$ref": "#/definitions/util.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/merchants/{merchantId}": {
+            "get": {
+                "description": "Returns a Merchant entity given the merchantId",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "retrieves the Merchant from the merchantId specified in the path",
+                "operationId": "GetMerchant",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "merchantId",
+                        "name": "merchantId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/dto.MerchantGetResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "fail",
+                        "schema": {
+                            "$ref": "#/definitions/util.APIResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Updates the Merchant given an existing merchant ID. Note that some fields are not allowed to be updatable.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "Update Merchant",
+                "operationId": "UpdateMerchant",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "merchantId",
+                        "name": "merchantId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Merchant entity",
+                        "name": "requestBody",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.Merchant"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/util.APIResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "fail",
+                        "schema": {
+                            "$ref": "#/definitions/util.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/merchants/{merchantId}/pay-out-config": {
+            "get": {
+                "description": "Returns a Merchant entity retrieves the Merchant's PayOutConfig",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "retrieve PayOutConfig",
+                "operationId": "GetPayOutConfig",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "merchantId",
+                        "name": "merchantId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/dto.PayOutConfig"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "fail",
+                        "schema": {
+                            "$ref": "#/definitions/util.APIResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Update Merchant PayOutConfig",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "allows updating or inserting PayOutConfig",
+                "operationId": "UpsertPayOutConfig",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "merchantId",
+                        "name": "merchantId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "PayInConfig entity",
+                        "name": "requestBody",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.PayOutConfig"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/util.APIResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "fail",
+                        "schema": {
+                            "$ref": "#/definitions/util.APIResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "dto.ApiKey": {
+            "type": "object",
+            "properties": {
+                "required": {
+                    "type": "boolean"
+                },
+                "scope": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "dto.BankAccount": {
+            "type": "object",
+            "required": [
+                "accountName",
+                "accountNumber",
+                "bankName"
+            ],
+            "properties": {
+                "accountName": {
+                    "type": "string"
+                },
+                "accountNumber": {
+                    "type": "string"
+                },
+                "bankName": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.BankTransferDetail": {
+            "type": "object",
+            "required": [
+                "accountName",
+                "accountNumber",
+                "bankName"
+            ],
+            "properties": {
+                "accountName": {
+                    "type": "string"
+                },
+                "accountNumber": {
+                    "type": "string"
+                },
+                "accountType": {
+                    "type": "string"
+                },
+                "bankName": {
+                    "type": "string"
+                },
+                "branch": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.BusinessDetail": {
+            "type": "object",
+            "required": [
+                "address",
+                "businessName",
+                "idNumber",
+                "phoneNumber",
+                "registeredEntityName"
+            ],
+            "properties": {
+                "address": {
+                    "$ref": "#/definitions/dto.MerchantAddress"
+                },
+                "businessIndustry": {
+                    "type": "string"
+                },
+                "businessName": {
+                    "type": "string"
+                },
+                "domainName": {
+                    "type": "string"
+                },
+                "idNumber": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "registeredEntityName": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.KymFullDetailResponse": {
+            "type": "object",
+            "required": [
+                "id",
+                "organisationId",
+                "partnerRefId"
+            ],
+            "properties": {
+                "accountingContact": {
+                    "$ref": "#/definitions/dto.PointOfContact"
+                },
+                "apiKey": {
+                    "$ref": "#/definitions/dto.ApiKey"
+                },
+                "bankTransferDetail": {
+                    "$ref": "#/definitions/dto.BankTransferDetail"
+                },
+                "businessContact": {
+                    "$ref": "#/definitions/dto.PointOfContact"
+                },
+                "businessDetail": {
+                    "$ref": "#/definitions/dto.BusinessDetail"
+                },
+                "datetimeCreated": {
+                    "type": "string"
+                },
+                "documentDownloadUrl": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "imageUrl": {
+                    "type": "string"
+                },
+                "notes": {
+                    "type": "string"
+                },
+                "organisationId": {
+                    "type": "string"
+                },
+                "partnerRefId": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "technicalContact": {
+                    "$ref": "#/definitions/dto.PointOfContact"
+                }
+            }
+        },
+        "dto.KymResponse": {
+            "type": "object",
+            "required": [
+                "businessName",
+                "contactPerson",
+                "id",
+                "phoneNumber"
+            ],
+            "properties": {
+                "businessName": {
+                    "type": "string"
+                },
+                "contactPerson": {
+                    "type": "string"
+                },
+                "datetimeCreated": {
+                    "type": "string"
+                },
+                "documentDownloadUrl": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.Merchant": {
+            "type": "object",
+            "required": [
+                "availablePaymentMethods",
+                "contactNumber",
+                "currencyCode",
+                "email",
+                "fullName",
+                "merchantId",
+                "organisationId"
+            ],
+            "properties": {
+                "address": {
+                    "$ref": "#/definitions/dto.MerchantAddress"
+                },
+                "availablePaymentMethods": {
+                    "description": "acceptable payment methods",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "example": [
+                        "creditCard",
+                        "internetBanking"
+                    ]
+                },
+                "contactNumber": {
+                    "description": "The merchant's main contact number",
+                    "type": "string",
+                    "example": "012345678"
+                },
+                "currencyCode": {
+                    "description": "Only THB is supported currently",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "The merchant's email address",
+                    "type": "string",
+                    "example": "email@merchant.com"
+                },
+                "fullName": {
+                    "description": "The merchant's company name in full",
+                    "type": "string",
+                    "example": "merchant company"
+                },
+                "logoUrl": {
+                    "description": "Full URL to the merchant's logo to display",
+                    "type": "string",
+                    "example": "https://url.to.logo/image.png"
+                },
+                "merchantId": {
+                    "type": "string"
+                },
+                "organisationId": {
+                    "description": "Beam's organisation ID of the merchant",
+                    "type": "string",
+                    "example": "merchant123"
+                }
+            }
+        },
+        "dto.MerchantAddress": {
+            "type": "object",
+            "required": [
+                "city",
+                "country",
+                "zipcode"
+            ],
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "district": {
+                    "type": "string"
+                },
+                "houseNumber": {
+                    "type": "string"
+                },
+                "province": {
+                    "type": "string"
+                },
+                "street": {
+                    "type": "string"
+                },
+                "subdistrict": {
+                    "type": "string"
+                },
+                "zipcode": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.MerchantGetResponse": {
+            "type": "object",
+            "required": [
+                "availablePaymentMethods",
+                "contactNumber",
+                "currencyCode",
+                "email",
+                "fullName",
+                "merchantId",
+                "organisationId"
+            ],
+            "properties": {
+                "address": {
+                    "$ref": "#/definitions/dto.MerchantAddress"
+                },
+                "availablePaymentMethods": {
+                    "description": "acceptable payment methods",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "example": [
+                        "creditCard",
+                        "internetBanking"
+                    ]
+                },
+                "contactNumber": {
+                    "description": "The merchant's main contact number",
+                    "type": "string",
+                    "example": "012345678"
+                },
+                "created": {
+                    "description": "timestamp the merchant entity was created",
+                    "type": "string"
+                },
+                "currencyCode": {
+                    "description": "Only THB is supported currently",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "The merchant's email address",
+                    "type": "string",
+                    "example": "email@merchant.com"
+                },
+                "fullName": {
+                    "description": "The merchant's company name in full",
+                    "type": "string",
+                    "example": "merchant company"
+                },
+                "logoUrl": {
+                    "description": "Full URL to the merchant's logo to display",
+                    "type": "string",
+                    "example": "https://url.to.logo/image.png"
+                },
+                "merchantId": {
+                    "type": "string"
+                },
+                "organisationId": {
+                    "description": "Beam's organisation ID of the merchant",
+                    "type": "string",
+                    "example": "merchant123"
+                },
+                "payOutConfig": {
+                    "$ref": "#/definitions/dto.PayOutConfig"
+                },
+                "updated": {
+                    "description": "timestamp the merchant entity was last updated",
+                    "type": "string"
+                }
+            }
+        },
+        "dto.NewKym": {
+            "type": "object",
+            "required": [
+                "bankTransferDetail",
+                "businessDetail",
+                "documentContent",
+                "source"
+            ],
+            "properties": {
+                "accountingContact": {
+                    "description": "AccountingContact represent accounting of contact",
+                    "$ref": "#/definitions/dto.PointOfContact"
+                },
+                "apiKey": {
+                    "description": "ApiKey defines model for api key.",
+                    "$ref": "#/definitions/dto.ApiKey"
+                },
+                "bankTransferDetail": {
+                    "description": "BankTransferDetail represent detail of bank detail",
+                    "$ref": "#/definitions/dto.BankTransferDetail"
+                },
+                "businessContact": {
+                    "description": "BusinessContact represent business of contact",
+                    "$ref": "#/definitions/dto.PointOfContact"
+                },
+                "businessDetail": {
+                    "description": "BusinessDetail represent primary information of company",
+                    "$ref": "#/definitions/dto.BusinessDetail"
+                },
+                "documentContent": {
+                    "description": "DocumentContent represent documentation uploaded convert to base64",
+                    "type": "string"
+                },
+                "imageUrl": {
+                    "description": "ImageURL represent company logo",
+                    "type": "string"
+                },
+                "organisationId": {
+                    "description": "OrganisationID represent id of organisation",
+                    "type": "string"
+                },
+                "partnerRefId": {
+                    "description": "PartnerRefID defines partner reference id",
+                    "type": "string"
+                },
+                "source": {
+                    "description": "Source indicate where kym is submitted from",
+                    "type": "string",
+                    "example": "@lighthouse"
+                },
+                "technicalContact": {
+                    "description": "TechnicalContact represent technical of contact",
+                    "$ref": "#/definitions/dto.PointOfContact"
+                }
+            }
+        },
+        "dto.NewMerchant": {
+            "type": "object",
+            "required": [
+                "availablePaymentMethods",
+                "contactNumber",
+                "currencyCode",
+                "email",
+                "fullName",
+                "organisationId"
+            ],
+            "properties": {
+                "address": {
+                    "$ref": "#/definitions/dto.MerchantAddress"
+                },
+                "availablePaymentMethods": {
+                    "description": "acceptable payment methods",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "example": [
+                        "creditCard",
+                        "internetBanking"
+                    ]
+                },
+                "contactNumber": {
+                    "description": "The merchant's main contact number",
+                    "type": "string",
+                    "example": "012345678"
+                },
+                "currencyCode": {
+                    "description": "Only THB is supported currently",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "The merchant's email address",
+                    "type": "string",
+                    "example": "email@merchant.com"
+                },
+                "fullName": {
+                    "description": "The merchant's company name in full",
+                    "type": "string",
+                    "example": "merchant company"
+                },
+                "logoUrl": {
+                    "description": "Full URL to the merchant's logo to display",
+                    "type": "string",
+                    "example": "https://url.to.logo/image.png"
+                },
+                "organisationId": {
+                    "description": "Beam's organisation ID of the merchant",
+                    "type": "string",
+                    "example": "merchant123"
+                }
+            }
+        },
+        "dto.PayOutConfig": {
+            "type": "object",
+            "required": [
+                "bankAccount",
+                "currencyCode",
+                "schedule"
+            ],
+            "properties": {
+                "bankAccount": {
+                    "$ref": "#/definitions/dto.BankAccount"
+                },
+                "currencyCode": {
+                    "type": "string",
+                    "example": "THB"
+                },
+                "schedule": {
+                    "description": "how often the payout should occur",
+                    "type": "string",
+                    "example": "weekly,monthly"
+                }
+            }
+        },
+        "dto.PointOfContact": {
+            "type": "object",
+            "required": [
+                "fullName",
+                "phoneNumber"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.UpdateKymStatusRequest": {
+            "type": "object",
+            "required": [
+                "status"
+            ],
+            "properties": {
+                "notes": {
+                    "type": "string"
+                },
+                "organisationId": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "util.APIResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
