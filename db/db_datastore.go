@@ -8,8 +8,8 @@ import (
 
 	"cloud.google.com/go/datastore"
 
-	c "github.com/Beam-Data-Company/merchant-config-svc/constant"
-	"github.com/Beam-Data-Company/merchant-config-svc/model"
+	c "github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/constant"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/model"
 )
 
 // AppDatastore is an internal type to be accessed through the database interface.

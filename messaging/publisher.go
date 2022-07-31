@@ -1,7 +1,7 @@
 package messaging
 
 import (
-	"github.com/Beam-Data-Company/merchant-config-svc/server/dto"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/dto"
 )
 
 // Publisher defines an interface for message publisher

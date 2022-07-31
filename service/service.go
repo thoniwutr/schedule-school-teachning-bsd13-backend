@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/Beam-Data-Company/merchant-config-svc/model"
-	"github.com/Beam-Data-Company/merchant-config-svc/server/dto"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/model"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/dto"
 )
 
 // KymServiceInterface defines business logic of kym api

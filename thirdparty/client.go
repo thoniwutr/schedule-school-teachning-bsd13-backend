@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/Beam-Data-Company/merchant-config-svc/util"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/util"
 )
 
 // ApiClient is a struct that calls internal APIs

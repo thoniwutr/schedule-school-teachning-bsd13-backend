@@ -6,7 +6,7 @@ import (
 
 	"cloud.google.com/go/storage"
 
-	"github.com/Beam-Data-Company/merchant-config-svc/constant"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/constant"
 )
 
 type CloudStorageManager interface {

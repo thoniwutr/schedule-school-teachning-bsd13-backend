@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"net/http"
 
-	c "github.com/Beam-Data-Company/merchant-config-svc/constant"
-	"github.com/Beam-Data-Company/merchant-config-svc/server/dto"
-	"github.com/Beam-Data-Company/merchant-config-svc/service"
-	"github.com/Beam-Data-Company/merchant-config-svc/util"
+	c "github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/constant"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/dto"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/service"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/util"
 )
 
 // TeacherHandler is a handler for /teacher path

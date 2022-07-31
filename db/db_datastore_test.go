@@ -15,9 +15,9 @@ import (
 	"github.com/google/go-cmp/cmp"
 	"google.golang.org/api/iterator"
 
-	c "github.com/Beam-Data-Company/merchant-config-svc/constant"
-	"github.com/Beam-Data-Company/merchant-config-svc/model"
-	"github.com/Beam-Data-Company/merchant-config-svc/server/dto"
+	c "github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/constant"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/model"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/dto"
 )
 
 // merchantDB is the struct under test

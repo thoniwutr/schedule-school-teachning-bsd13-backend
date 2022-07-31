@@ -6,8 +6,8 @@ import (
 	"fmt"
 
 	"cloud.google.com/go/pubsub"
-	"github.com/Beam-Data-Company/merchant-config-svc/server/dto"
-	"github.com/Beam-Data-Company/merchant-config-svc/util"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/dto"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/util"
 )
 
 type PubsubClient struct {

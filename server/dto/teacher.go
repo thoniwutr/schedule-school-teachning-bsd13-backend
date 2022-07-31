@@ -1,7 +1,7 @@
 package dto
 
 import (
-	"github.com/Beam-Data-Company/merchant-config-svc/model"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/model"
 	"github.com/go-playground/validator/v10"
 )
 

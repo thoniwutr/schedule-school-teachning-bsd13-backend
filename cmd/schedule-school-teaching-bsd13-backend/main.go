@@ -9,16 +9,16 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/Beam-Data-Company/merchant-config-svc/api"
-	"github.com/Beam-Data-Company/merchant-config-svc/config"
-	"github.com/Beam-Data-Company/merchant-config-svc/db"
-	"github.com/Beam-Data-Company/merchant-config-svc/messaging"
-	"github.com/Beam-Data-Company/merchant-config-svc/server/handlers"
-	"github.com/Beam-Data-Company/merchant-config-svc/server/router"
-	"github.com/Beam-Data-Company/merchant-config-svc/server/security"
-	"github.com/Beam-Data-Company/merchant-config-svc/service"
-	"github.com/Beam-Data-Company/merchant-config-svc/thirdparty"
-	"github.com/Beam-Data-Company/merchant-config-svc/util"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/api"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/config"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/db"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/messaging"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/handlers"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/router"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/server/security"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/service"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/thirdparty"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/util"
 )
 
 // @title Merchant Config Service API

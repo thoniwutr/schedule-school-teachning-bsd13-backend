@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"runtime/debug"
 
-	c "github.com/Beam-Data-Company/merchant-config-svc/constant"
+	c "github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/constant"
 )
 
 // HandlerUtil can be used to write generic reponses back to the caller or any errors encountered

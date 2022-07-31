@@ -1,7 +1,7 @@
 package db
 
 import (
-	"github.com/Beam-Data-Company/merchant-config-svc/model"
+	"github.com/thoniwutr/-schedule-school-teachning-bsd13-backend/model"
 )
 
 type AppDB interface {

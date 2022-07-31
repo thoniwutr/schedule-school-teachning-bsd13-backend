@@ -1,4 +1,4 @@
-module github.com/Beam-Data-Company/merchant-config-svc
+module github.com/thoniwutr/-schedule-school-teachning-bsd13-backend
 
 go 1.16
 
