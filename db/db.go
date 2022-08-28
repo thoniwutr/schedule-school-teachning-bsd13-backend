@@ -58,3 +58,20 @@ type TeacherDB interface {
 	AddTeacher(kym *model.Teacher) error
 
 }
+
+// MainSubjectDB defines an interface for our Application's data access methods
+type MainSubjectDB interface {
+	// GetAllMainSubject gets all kym detail from db
+	GetAllMainSubject() ([]*model.MainSubject, error)
+
+
+	// AddMainSubject creates the klm detail to db
+	AddMainSubject(kym *model.MainSubject) error
+
+}
+
+type SubjectDB interface {
+	GetAllSubject() ([]*model.Subject, error)
+	AddSubject(kym *model.Subject) error
+
+}

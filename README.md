@@ -39,3 +39,7 @@ Also in the terminal 2, run:
 Currently only using the models generated from the openapi specifications and nothing else.
 
 DATASTORE_EMULATOR_HOST localhost:8081
+
+
+Modal
+

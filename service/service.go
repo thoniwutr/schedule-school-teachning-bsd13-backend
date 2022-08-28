@@ -27,11 +27,21 @@ type MerchantServiceInterface interface {
 	UpsertPayOutConfig(merchantID string, poc *dto.PayOutConfig) error
 }
 
-
 // TeacherServiceInterface defines business logic of teacher api
 type TeacherServiceInterface interface {
 	AddTeacher(nt *dto.NewTeacher) error
 
 	GetAllTeacher() ([]*dto.Teacher, error)
+}
 
+type MainSubjectServiceInterface interface {
+	AddMainSubject(nt *dto.NewMainSubject) error
+
+	GetAllMainSubject() ([]*dto.MainSubject, error)
+}
+
+type SubjectServiceInterface interface {
+	AddSubject(nt *dto.NewSubject) error
+
+	GetAllSubject() ([]*dto.Subject, error)
 }

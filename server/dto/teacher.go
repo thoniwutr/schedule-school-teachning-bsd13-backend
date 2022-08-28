@@ -1,16 +1,16 @@
 package dto
 
 import (
-	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/model"
 	"github.com/go-playground/validator/v10"
+	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/model"
 )
 
 // NewTeacher struct used for creating new teacher requests
 type NewTeacher struct {
 	// Full URL to the merchant's logo to display
-	ImgURL string `json:"imgUrl,omitempty" example:"https://url.to.logo/image.png"`
+	NickName string `json:"nickName" validate:"required" example:"merchant company"`
 	// The merchant's company name in full
-	FistName string `json:"firstName" validate:"required" example:"merchant company"`
+	FirstName string `json:"firstName" validate:"required" example:"merchant company"`
 	// The merchant's company name in full
 	LastName string `json:"lastName" validate:"required" example:"merchant company"`
 	// The merchant's main contact number
@@ -35,8 +35,8 @@ func ToTeacherDTO(teacherList []*model.Teacher) []*Teacher {
 		var teacherResItem = &Teacher{
 			ID:                  item.ID,
 			NewTeacher: NewTeacher{
-				ImgURL: item.ImgURL,
-				FistName: item.FistName,
+				NickName: item.NickName,
+				FirstName: item.FirstName,
 				LastName: item.ContactNumber,
 				Capacity: item.Capacity,
 				MainSubjectID: item.MainSubjectID,
@@ -60,8 +60,8 @@ func (nt *NewTeacher) Validate() error {
 func (nt *NewTeacher) ToModel(id string) *model.Teacher {
 	return model.NewTeacher(
 		id,
-		nt.ImgURL,
-		nt.FistName,
+		nt.NickName,
+		nt.FirstName,
 		nt.LastName,
 		nt.ContactNumber,
 		nt.Capacity,

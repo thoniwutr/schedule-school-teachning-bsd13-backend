@@ -20,6 +20,8 @@ type AppDatastore struct {
 	KindRole     string
 	KindKym      string
 	KindTeacher string
+	KindMainSubject string
+	KindSubject string
 }
 
 // NewAppDatastore create a datastore client to persist application data on Google Cloud Datastore
@@ -42,7 +44,7 @@ func NewAppDatastore(projectID string) (*AppDatastore, error) {
 		return nil, fmt.Errorf("unable to communicate to datastore: %w", err)
 	}
 
-	return &AppDatastore{client, "Merchant", "Role", "Kym","Teacher"}, nil
+	return &AppDatastore{client, "Merchant", "Role", "Kym","Teacher", "MainSubject", "Subject"}, nil
 }
 
 // GetMerchant returns the Merchant given the ID
@@ -192,6 +194,14 @@ func (db *AppDatastore) teacherKey(id string) *datastore.Key {
 	return datastore.NameKey(db.KindTeacher, id, nil)
 }
 
+func (db *AppDatastore) mainSubjectKey(id string) *datastore.Key {
+	return datastore.NameKey(db.KindMainSubject, id, nil)
+}
+
+func (db *AppDatastore) subjectKey(id string) *datastore.Key {
+	return datastore.NameKey(db.KindSubject, id, nil)
+}
+
 // AddKym attempts to add Kym to datastore.
 func (db *AppDatastore) AddKym(kym *model.Kym) error {
 	_, err := db.client.RunInTransaction(context.Background(), func(tx *datastore.Transaction) error {
@@ -302,4 +312,74 @@ func (db *AppDatastore) GetAllTeacher() ([]*model.Teacher, error) {
 		return nil, err
 	}
 	return teacherList, nil
+}
+
+
+// AddMainSubject attempts to add a NewMerchant to the datastore.
+func (db *AppDatastore) AddMainSubject(m *model.MainSubject) error {
+	_, err := db.client.RunInTransaction(context.Background(), func(tx *datastore.Transaction) error {
+		key := db.mainSubjectKey(m.ID)
+		err := tx.Get(key, &model.MainSubject{})
+
+		switch err {
+		case nil:
+			return c.ErrDBEntityAlreadyExists
+		case datastore.ErrNoSuchEntity:
+			// no existing entity id, proceed with write
+			_, err = tx.Put(key, m)
+			return err
+		}
+		return err
+	})
+
+	return err
+}
+
+// GetAllMainSubject attempts to get all kym from datastore.
+func (db *AppDatastore) GetAllMainSubject() ([]*model.MainSubject, error) {
+	ctx := context.Background()
+
+	var query *datastore.Query
+
+	query = datastore.NewQuery(db.KindMainSubject).Limit(30)
+	mainSubjectList := make([]*model.MainSubject, 0)
+	if _, err := db.client.GetAll(ctx, query, &mainSubjectList); err != nil {
+		return nil, err
+	}
+	return mainSubjectList, nil
+}
+
+
+
+func (db *AppDatastore) AddSubject(m *model.Subject) error {
+	_, err := db.client.RunInTransaction(context.Background(), func(tx *datastore.Transaction) error {
+		key := db.subjectKey(m.ID)
+		err := tx.Get(key, &model.Subject{})
+
+		switch err {
+		case nil:
+			return c.ErrDBEntityAlreadyExists
+		case datastore.ErrNoSuchEntity:
+			// no existing entity id, proceed with write
+			_, err = tx.Put(key, m)
+			return err
+		}
+		return err
+	})
+
+	return err
+}
+
+
+func (db *AppDatastore) GetAllSubject() ([]*model.Subject, error) {
+	ctx := context.Background()
+
+	var query *datastore.Query
+
+	query = datastore.NewQuery(db.KindSubject).Limit(30)
+	subjectList := make([]*model.Subject, 0)
+	if _, err := db.client.GetAll(ctx, query, &subjectList); err != nil {
+		return nil, err
+	}
+	return subjectList, nil
 }
