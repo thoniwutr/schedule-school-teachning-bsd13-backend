@@ -65,9 +65,9 @@ func (cd *NewConfirmationDetail) ToModel(id string) *model.ConfirmationDetail {
 // NewConfirmation struct used for creating new teacher requests
 type NewConfirmation struct {
 	// Full URL to the merchant's logo to display
-	ConfirmationName string `json:"nickName" validate:"required" example:"merchant company"`
+	ConfirmationName string `json:"confirmationName" validate:"required" example:"merchant company"`
 	// The merchant's company name in full
-	CreateDate string `json:"firstName" validate:"required" example:"merchant company"`
+	CreateDate string `json:"createDate" validate:"required" example:"merchant company"`
 }
 
 // Confirmation struct used for updating Teacher
