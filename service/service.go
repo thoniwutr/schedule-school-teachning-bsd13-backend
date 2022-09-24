@@ -45,3 +45,10 @@ type SubjectServiceInterface interface {
 
 	GetAllSubject() ([]*dto.Subject, error)
 }
+
+type ConfirmationServiceInterface interface {
+	AddConfirmation(request *dto.NewConfirmation) error
+	GetAllConfirmation() ([]*dto.Confirmation, error)
+	AddConfirmationDetail(request *dto.NewConfirmationDetail) error
+	GetAllConfirmationDetail(id string) ([]*dto.ConfirmationDetail, error)
+}

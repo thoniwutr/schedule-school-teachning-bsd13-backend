@@ -75,3 +75,11 @@ type SubjectDB interface {
 	AddSubject(kym *model.Subject) error
 
 }
+
+
+type ConfirmationDB interface {
+	AddConfirmation(m *model.Confirmation) error
+	AddConfirmationDetail(m *model.ConfirmationDetail) error
+	GetAllConfirmation() ([]*model.Confirmation, error)
+	GetAllConfirmationDetail(confirmationId string) ([]*model.ConfirmationDetail, error)
+}

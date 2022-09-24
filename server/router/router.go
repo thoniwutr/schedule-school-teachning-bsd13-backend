@@ -19,6 +19,7 @@ func NewRouter(
 	th *handlers.TeacherHandler,
 	msh *handlers.MainSubjectHandler,
 	sh *handlers.SubjectHandler,
+	ch *handlers.ConfirmationHandler,
 ) http.Handler {
 
 	r := mux.NewRouter()
@@ -73,6 +74,17 @@ func NewRouter(
 	sr.Use(middleware.NewRequestLogger(logger).LogRequest)
 	sr.Methods(http.MethodPost).Path("").HandlerFunc(sh.AddSubject)
 	sr.Methods(http.MethodGet).Path("").HandlerFunc(sh.GetAllSubject)
+
+
+	// subrouter for /mainsubject
+	cr := r.PathPrefix("/confirmation").Subrouter()
+	cr.Use(middleware.ContentTypeJSON)
+	cr.Use(middleware.NewRequestLogger(logger).LogRequest)
+	cr.Methods(http.MethodPost).Path("").HandlerFunc(ch.AddConfirmation)
+	cr.Methods(http.MethodGet).Path("").HandlerFunc(ch.GetAllConfirmation)
+
+	cr.Methods(http.MethodPost).Path("/{id}").HandlerFunc(ch.AddConfirmation)
+	cr.Methods(http.MethodGet).Path("/{id}").HandlerFunc(ch.GetAllConfirmationDetail)
 
 	return middleware.RemoveTrailingSlash(r)
 }

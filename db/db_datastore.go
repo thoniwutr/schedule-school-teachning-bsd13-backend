@@ -22,6 +22,8 @@ type AppDatastore struct {
 	KindTeacher string
 	KindMainSubject string
 	KindSubject string
+	KindConfirmation string
+	KindConfirmationDetail string``
 }
 
 // NewAppDatastore create a datastore client to persist application data on Google Cloud Datastore
@@ -44,7 +46,7 @@ func NewAppDatastore(projectID string) (*AppDatastore, error) {
 		return nil, fmt.Errorf("unable to communicate to datastore: %w", err)
 	}
 
-	return &AppDatastore{client, "Merchant", "Role", "Kym","Teacher", "MainSubject", "Subject"}, nil
+	return &AppDatastore{client, "Merchant", "Role", "Kym","Teacher", "MainSubject", "Subject","Confirmation","ConfirmationDetail"}, nil
 }
 
 // GetMerchant returns the Merchant given the ID
@@ -200,6 +202,14 @@ func (db *AppDatastore) mainSubjectKey(id string) *datastore.Key {
 
 func (db *AppDatastore) subjectKey(id string) *datastore.Key {
 	return datastore.NameKey(db.KindSubject, id, nil)
+}
+
+func (db *AppDatastore) confirmationKey(id string) *datastore.Key {
+	return datastore.NameKey(db.KindConfirmation, id, nil)
+}
+
+func (db *AppDatastore) confirmationDetailKey(id string) *datastore.Key {
+	return datastore.NameKey(db.KindConfirmationDetail, id, nil)
 }
 
 // AddKym attempts to add Kym to datastore.
@@ -383,3 +393,74 @@ func (db *AppDatastore) GetAllSubject() ([]*model.Subject, error) {
 	}
 	return subjectList, nil
 }
+
+
+func (db *AppDatastore) AddConfirmation(m *model.Confirmation) error {
+	_, err := db.client.RunInTransaction(context.Background(), func(tx *datastore.Transaction) error {
+		key := db.confirmationKey(m.ID)
+		err := tx.Get(key, &model.Confirmation{})
+
+		switch err {
+		case nil:
+			return c.ErrDBEntityAlreadyExists
+		case datastore.ErrNoSuchEntity:
+			// no existing entity id, proceed with write
+			_, err = tx.Put(key, m)
+			return err
+		}
+		return err
+	})
+
+	return err
+}
+
+
+func (db *AppDatastore) AddConfirmationDetail(m *model.ConfirmationDetail) error {
+	_, err := db.client.RunInTransaction(context.Background(), func(tx *datastore.Transaction) error {
+		key := db.confirmationDetailKey(m.ID)
+		err := tx.Get(key, &model.ConfirmationDetail{})
+
+		switch err {
+		case nil:
+			return c.ErrDBEntityAlreadyExists
+		case datastore.ErrNoSuchEntity:
+			// no existing entity id, proceed with write
+			_, err = tx.Put(key, m)
+			return err
+		}
+		return err
+	})
+
+	return err
+}
+
+
+
+func (db *AppDatastore) GetAllConfirmation() ([]*model.Confirmation, error) {
+	ctx := context.Background()
+
+	var query *datastore.Query
+
+	query = datastore.NewQuery(db.KindConfirmation).Limit(100)
+	list := make([]*model.Confirmation, 0)
+	if _, err := db.client.GetAll(ctx, query, &list); err != nil {
+		return nil, err
+	}
+	return list, nil
+}
+
+
+func (db *AppDatastore) GetAllConfirmationDetail(confirmationId string) ([]*model.ConfirmationDetail, error) {
+	ctx := context.Background()
+
+	var query *datastore.Query
+
+	query = datastore.NewQuery(db.KindConfirmationDetail).Filter("ConfirmationID =", confirmationId)
+	list := make([]*model.ConfirmationDetail, 0)
+	if _, err := db.client.GetAll(ctx, query, &list); err != nil {
+		return nil, err
+	}
+	return list, nil
+}
+
+

@@ -66,15 +66,16 @@ func main() {
 	teacherService := service.NewTeacherService(appDb)
 	mainSubjectService := service.NewMainSubjectService(appDb)
 	subjectService := service.NewSubjectService(appDb)
+	confirmationService := service.NewConfirmationService(appDb)
 
 	mh := handlers.NewMerchantsHandler(hu, roleAuth, publisher, merchantService)
 	kym := handlers.NewKymHandler(hu, roleAuth, newKymService)
 	th := handlers.NewTeacherHandler(hu,teacherService)
 	msh := handlers.NewMainSubjectHandler(hu,mainSubjectService)
 	sh := handlers.NewSubjectHandler(hu,subjectService)
+	ch := handlers.NewConfirmationHandler(hu,confirmationService)
 
-
-	r := router.NewRouter(l, mh, kym,th,msh, sh)
+	r := router.NewRouter(l, mh, kym,th,msh, sh,ch)
 
 	srv := &http.Server{
 		Addr:         fmt.Sprintf("0.0.0.0:%s", cfg.Server.Port),
