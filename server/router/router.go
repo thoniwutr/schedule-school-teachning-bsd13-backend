@@ -1,11 +1,9 @@
 package router
 
 import (
-	"net/http"
-
 	"github.com/gorilla/mux"
 	"github.com/swaggo/http-swagger"
-
+	"net/http"
 	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/handlers"
 	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/middleware"
 	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/util"

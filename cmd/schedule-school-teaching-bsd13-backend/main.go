@@ -3,12 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"log"
-	"net/http"
-	"os"
-	"os/signal"
-	"time"
-
+	"github.com/rs/cors"
 	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/api"
 	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/config"
 	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/db"
@@ -19,6 +14,11 @@ import (
 	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/service"
 	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/thirdparty"
 	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/util"
+	"log"
+	"net/http"
+	"os"
+	"os/signal"
+	"time"
 )
 
 // @title Merchant Config Service API
@@ -77,9 +77,17 @@ func main() {
 
 	r := router.NewRouter(l, mh, kym,th,msh, sh,ch)
 
+
+	cor := cors.New(cors.Options{
+		AllowedOrigins: []string{"http://localhost:3000"},
+		AllowCredentials: true,
+	})
+
+	handler := cor.Handler(r)
+
 	srv := &http.Server{
 		Addr:         fmt.Sprintf("0.0.0.0:%s", cfg.Server.Port),
-		Handler:      r,
+		Handler:      handler,
 		WriteTimeout: cfg.Server.TimeoutWrite,
 		ReadTimeout:  cfg.Server.TimeoutRead,
 		IdleTimeout:  cfg.Server.TimeoutIdle,

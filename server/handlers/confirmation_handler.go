@@ -68,6 +68,7 @@ func (m *ConfirmationHandler) GetAllConfirmationDetail(rw http.ResponseWriter, r
 
 func (m *ConfirmationHandler) AddConfirmation(rw http.ResponseWriter, r *http.Request) {
 	req := &dto.NewConfirmation{}
+
 	if err := json.NewDecoder(r.Body).Decode(req); err != nil {
 		m.util.HTTPError(rw, fmt.Errorf("error deserializing main subject %w", err), http.StatusBadRequest)
 		return
@@ -83,7 +84,9 @@ func (m *ConfirmationHandler) AddConfirmation(rw http.ResponseWriter, r *http.Re
 		return
 	}
 
-
+	rw.Header().Set("Content-Type", "text/html; charset=ascii")
+	rw.Header().Set("Access-Control-Allow-Origin", "*")
+	rw.Header().Set("Access-Control-Allow-Headers","Content-Type,access-control-allow-origin, access-control-allow-headers")
 	m.util.HTTPSuccess(rw, "success", http.StatusCreated)
 }
 
