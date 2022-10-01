@@ -6,7 +6,7 @@ import (
 )
 
 type NewConfirmationDetail struct {
-	ConfirmationID string `json:"comfirmationId" validate:"required" example:"merchant company"`
+	ConfirmationID string `json:"confirmationId" validate:"required" example:"merchant company"`
 	SubjectDetailID []string `json:"subjectDetailId" validate:"required" example:"merchant company"`
 	StudentName string `json:"studentName" validate:"required" example:"merchant company"`
 	Level string `json:"level" validate:"required" example:"merchant company"`

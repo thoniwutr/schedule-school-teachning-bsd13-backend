@@ -3,10 +3,10 @@ package router
 import (
 	"github.com/gorilla/mux"
 	"github.com/swaggo/http-swagger"
-	"net/http"
 	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/handlers"
 	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/server/middleware"
 	"github.com/thoniwutr/schedule-school-teachning-bsd13-backend/util"
+	"net/http"
 )
 
 // NewRouter returns a http.Handler which handles different routes for the server
@@ -81,7 +81,7 @@ func NewRouter(
 	cr.Methods(http.MethodPost).Path("").HandlerFunc(ch.AddConfirmation)
 	cr.Methods(http.MethodGet).Path("").HandlerFunc(ch.GetAllConfirmation)
 
-	cr.Methods(http.MethodPost).Path("/{id}").HandlerFunc(ch.AddConfirmation)
+	cr.Methods(http.MethodPost).Path("/{id}").HandlerFunc(ch.AddConfirmationDetail)
 	cr.Methods(http.MethodGet).Path("/{id}").HandlerFunc(ch.GetAllConfirmationDetail)
 
 	return middleware.RemoveTrailingSlash(r)
