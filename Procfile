@@ -1,0 +1,1 @@
+web: bin/schedule-school-teaching-bsd13-backend
