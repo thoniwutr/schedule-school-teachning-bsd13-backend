@@ -76,8 +76,6 @@ func main() {
 	ch := handlers.NewConfirmationHandler(hu,confirmationService)
 
 	r := router.NewRouter(l, mh, kym,th,msh, sh,ch)
-
-
 	cor := cors.New(cors.Options{
 		AllowedOrigins: []string{"http://localhost:3000"},
 		AllowCredentials: true,

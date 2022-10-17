@@ -37,6 +37,8 @@ func (m *ConfirmationHandler) GetAllConfirmation(rw http.ResponseWriter, r *http
 		return
 	}
 
+	rw.Header().Set("Access-Control-Allow-Origin", "*")
+	rw.Header().Set("Access-Control-Allow-Headers","Content-Type,access-control-allow-origin, access-control-allow-headers")
 	rw.WriteHeader(http.StatusOK)
 	rw.Write(resp)
 }
@@ -61,6 +63,8 @@ func (m *ConfirmationHandler) GetAllConfirmationDetail(rw http.ResponseWriter, r
 		return
 	}
 
+	rw.Header().Set("Access-Control-Allow-Origin", "*")
+	rw.Header().Set("Access-Control-Allow-Headers","Content-Type,access-control-allow-origin, access-control-allow-headers")
 	rw.WriteHeader(http.StatusOK)
 	rw.Write(resp)
 }
@@ -84,10 +88,16 @@ func (m *ConfirmationHandler) AddConfirmation(rw http.ResponseWriter, r *http.Re
 		return
 	}
 
-	rw.Header().Set("Content-Type", "text/html; charset=ascii")
+	resp, err := json.Marshal(true)
+	if err != nil {
+		m.util.WrappedError(rw, fmt.Errorf("unable to marshal json: %w", err))
+		return
+	}
+
 	rw.Header().Set("Access-Control-Allow-Origin", "*")
 	rw.Header().Set("Access-Control-Allow-Headers","Content-Type,access-control-allow-origin, access-control-allow-headers")
-	m.util.HTTPSuccess(rw, "success", http.StatusCreated)
+	rw.WriteHeader(http.StatusOK)
+	rw.Write(resp)
 }
 
 
@@ -109,6 +119,14 @@ func (m *ConfirmationHandler) AddConfirmationDetail(rw http.ResponseWriter, r *h
 		return
 	}
 
+	resp, err := json.Marshal(true)
+	if err != nil {
+		m.util.WrappedError(rw, fmt.Errorf("unable to marshal json: %w", err))
+		return
+	}
 
-	m.util.HTTPSuccess(rw, "success", http.StatusCreated)
+	rw.Header().Set("Access-Control-Allow-Origin", "*")
+	rw.Header().Set("Access-Control-Allow-Headers","Content-Type,access-control-allow-origin, access-control-allow-headers")
+	rw.WriteHeader(http.StatusOK)
+	rw.Write(resp)
 }
